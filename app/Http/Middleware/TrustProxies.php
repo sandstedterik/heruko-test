@@ -12,7 +12,7 @@ class TrustProxies extends Middleware
      *
      * @var array|string|null
      */
-    protected $proxies;
+    protected $proxies = '*'; //heroku added = '*'
 
     /**
      * The headers that should be used to detect proxies.
