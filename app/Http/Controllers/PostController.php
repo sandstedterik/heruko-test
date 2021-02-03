@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('posts', compact('posts'));
     }
 
     /**
@@ -23,7 +24,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $data = request()->all();
+        $post = Post::create($data);
+    
+        return redirect('posts');
     }
 
     /**
@@ -56,7 +60,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.edit', [
+            'posts' => $posts,
+       ]);
     }
 
     /**
@@ -79,7 +87,11 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+            // from net ninja
+    $post = Post::findOrFail($id);
+    $post->delete();
+
+    return redirect('/posts');
     }
 }
 
